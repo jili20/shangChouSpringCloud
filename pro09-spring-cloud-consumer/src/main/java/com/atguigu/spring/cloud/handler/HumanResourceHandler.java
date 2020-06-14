@@ -13,10 +13,12 @@ public class HumanResourceHandler {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	@RequestMapping("/consumer/get/employee")
+	@RequestMapping("/consumer/ribbon/get/employee")
 	public Employee getEmployeeRemote() {
 		// 1.声明远程微服务的主机地址加端口号
-		String host = "http://localhost:1000";
+		//String host = "http://localhost:1000";
+		// 将远程微服务调用地址从 IP 地址+端口号 改成 微服务名称
+		String host = "http://atguigu-provider";
 		// 2.声明具体要调用的功能的URL地址
 		String url = "/provider/get/employee/remote";
 		// 3.通过RestTemplate 调用远程微服务
