@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.atguigu.spring.cloud.entity.Employee;
-// @FeignClient注解表示当前接口和一个Provider对应，注解中value属性指定要调用的Provider的微服务名称
-@FeignClient(value = "atguigu-provider")
+import com.atguigu.spring.cloud.factory.MyFallBackFactory;
+import com.atguigu.spring.cloud.util.ResultEntity;
+// @FeignClient注解表示当前接口和一个Provider对应，
+//		注解中value属性指定要调用的Provider的微服务名称
+// 		注解中fallbackFactory属性指定Provider不可用时提供备用方案的工厂类型
+@FeignClient(value = "atguigu-provider", fallbackFactory = MyFallBackFactory.class)
 public interface EmployeeRemoteService {
 	// 远程调用的接口方法
 	// 要求@ReauestMapping注解映射的地址一致
@@ -19,5 +23,8 @@ public interface EmployeeRemoteService {
 
 	@RequestMapping("/provider/get/emp/list/remote")
 	public List<Employee> getEmployeeRemote(@RequestParam("keyword") String keyword);
+	
+	@RequestMapping("/provider/get/emp/with/circuit/breaker")
+	public ResultEntity<Employee> getEmpWithCircuitBreaker(@RequestParam("signal") String signal);
 
 }
