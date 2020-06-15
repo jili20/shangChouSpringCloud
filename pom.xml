@@ -99,5 +99,6 @@
   	<module>pro07-spring-cloud-common</module>
   	<module>pro08-spring-cloud-provider</module>
   	<module>pro09-spring-cloud-feign-consumer</module>
+  	<module>pro11-spring-cloud-dashboard</module>
   </modules>
 </project>

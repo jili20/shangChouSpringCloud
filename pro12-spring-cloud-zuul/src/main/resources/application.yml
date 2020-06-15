@@ -1,0 +1,22 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /xigua
+spring:
+  application:
+    name: zuul-gateway
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:5000/eureka/
+      
+zuul:
+  ignored-services: '*' # 忽略所有微服务名称
+  prefix: /maomi        # 给访问路径添加统一前缀
+ # ignored-services: 忽略指定微服务名称，让用户不能通过微服务名称访问 
+ # - atguigu-feign-consumer
+  routes:
+    employee:
+      service-id: atguigu-feign-consumer
+      path: /zuul-emp/**   # 使用指定地址代替微服务名称，同时用微服务名称也可以访问
+     

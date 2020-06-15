@@ -37,6 +37,6 @@ public class MyFallBackFactory implements FallbackFactory<EmployeeRemoteService>
 				return ResultEntity.failed("降级机制生效："+cause.getMessage()); 
 			}
 		};
-			 
+			  
 	}
 }
